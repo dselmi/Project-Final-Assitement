@@ -91,6 +91,11 @@
                                 <img class="profile-user-img img-fluid img" src="{{asset('images/supprimer.png')}}" alt="avatar"
                                 style="width: 25px;">
                             </a>
+
+                            <a href="{{ Route('sheet.pdf', $fiche->id) }}" class="btn">
+                                <img class="profile-user-img img-fluid img " src="{{asset('images/telecharger-le-pdf.png')}}" alt="avatar"
+                            style="width: 25px;">
+                            </a>
                         </td>
                     </tr>
                     @endforeach

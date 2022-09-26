@@ -2,8 +2,7 @@
 
 @section('css_before')
 <!-- Page JS Plugins CSS -->
-<link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
-<link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
+
 @endsection
 
 @push('js_after')
@@ -11,19 +10,14 @@
 <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 
 <!-- Page JS Plugins -->
-<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-<script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+</head>
 <!-- Page JS Code -->
-<script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
 @endpush
 
 @section('content')
@@ -225,13 +219,13 @@
             <div class="header-body">
 
                 <div class="row">
-                    <div class="col-xl-3 col-lg-6">
-                        <div class="card card-stats mb-4 mb-xl-0">
+                    <div class="col-xl-12 col-lg-12">
+                      <!--  <div class="card card-stats mb-4 mb-xl-0">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="card-title text-uppercase text-muted mb-0">Physique</h4>
-                                        <span class="h2 font-weight-bold mb-0">{{ $stats->violence_physique }}</span>
+                                        <span class="h2 font-weight-bold mb-0"></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="  text-white rounded-circle shadow">
@@ -242,8 +236,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <!--<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>-->
+                                
                                 </p>
                             </div>
                         </div>
@@ -254,8 +247,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="card-title text-uppercase text-muted mb-0">Psychologique</h4>
-                                        <span class="h2 font-weight-bold mb-0">{{ $stats->violence_psychologique
-                                            }}</span>
+                                        <span class="h2 font-weight-bold mb-0"></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="  text-white rounded-circle shadow">
@@ -265,8 +257,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <!--<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                      <span class="text-nowrap">Since last week</span>-->
+                              
                                 </p>
                             </div>
                         </div>
@@ -277,7 +268,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="card-title text-uppercase text-muted mb-0">Economique</h4>
-                                        <span class="h2 font-weight-bold mb-0">{{ $stats->violence_economique }}</span>
+                                        <span class="h2 font-weight-bold mb-0"></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="  text-white rounded-circle shadow">
@@ -287,8 +278,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <!--<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last week</span>-->
+                               
                                 </p>
                             </div>
                         </div>
@@ -299,7 +289,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="card-title text-uppercase text-muted mb-0">Verbale</h4>
-                                        <span class="h2 font-weight-bold mb-0">{{ $stats->violence_verbale }}</span>
+                                        <span class="h2 font-weight-bold mb-0"></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="  text-white rounded-circle shadow">
@@ -309,8 +299,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <!--<span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>-->
+                                   
                                 </p>
                             </div>
                         </div>
@@ -323,7 +312,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="card-title text-uppercase text-muted mb-0">Harcelement</h4>
-                                        <span class="h2 font-weight-bold mb-0">{{ $stats->violence_harcelement }}</span>
+                                        <span class="h2 font-weight-bold mb-0"></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="  text-white rounded-circle shadow">
@@ -334,8 +323,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <!--<span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                    <span class="text-nowrap">Since last month</span>-->
+                                
                                 </p>
                             </div>
                         </div>
@@ -346,7 +334,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h4 class="card-title text-uppercase text-muted mb-0">Sexuelle</h4>
-                                        <span class="h2 font-weight-bold mb-0">{{ $stats->violence_sexuelle }}</span>
+                                        <span class="h2 font-weight-bold mb-0"></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="  text-white rounded-circle shadow">
@@ -356,12 +344,18 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <!--<span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                      <span class="text-nowrap">Since last month</span>-->
+                       
                                 </p>
                             </div>
                         </div>
                     </div>
+                                        -->
+
+                            <div class="chart-container">
+                                <div class="pie-chart-container">
+                                <canvas id="pie-chart"></canvas>
+                                </div>
+                            </div>
                 </div>
             </div>
         </div>
@@ -374,26 +368,23 @@
 
 
 
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+<!--<div id="piechart_3d" style="width: 900px; height: 500px;"></div>-->
 
 </body>
 @endsection
 
 @push("script")
-<script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
+    /*  google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          /*  <?php
-            echo $stats
-            ?>*/
+         <?php
+        //    echo $stats
+            ?>
         ]);
 
         var options = {
@@ -403,7 +394,74 @@
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
-      }
-    </script>
+      }*/
+
+
+  $(function(){
+      //get the pie chart canvas
+      var cData = JSON.parse(`<?php echo $chart_data; ?>`);
+      console.log(cData);
+      var ctx = $("#pie-chart");
+ 
+      //pie chart data
+      var data = {
+        labels: cData.label,
+        datasets: [
+          {
+            label: "Violence Count",
+            data: cData.data,
+            backgroundColor: [
+              "#DEB887",
+              "#A9A9A9",
+              "#DC143C",
+              "#F4A460",
+              "#2E8B57",
+              "#1D7A46",
+              "#CDA776",
+            ],
+            borderColor: [
+              "#CDA776",
+              "#989898",
+              "#CB252B",
+              "#E39371",
+              "#1D7A46",
+              "#F4A460",
+              "#CDA776",
+            ],
+            borderWidth: [1, 1, 1, 1, 1,1,1]
+          }
+        ]
+      };
+ 
+      //options
+      var options = {
+        responsive: true,
+        title: {
+          display: true,
+          position: "top",
+          text: "Nombre des violence",
+          fontSize: 18,
+          fontColor: "#111"
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+            fontColor: "#333",
+            fontSize: 16
+          }
+        }
+      };
+ 
+      //create Pie Chart class object
+      var chart1 = new Chart(ctx, {
+        type: "pie",
+        data: data,
+        options: options
+      });
+ 
+  });
+
+ </script>
 
 @endpush

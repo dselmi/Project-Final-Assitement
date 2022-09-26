@@ -930,7 +930,7 @@
 
                             <div class="col-md-12">
                             <label class="form-label">Suivi juridique :</label><br>
-                                <div class="form-check form-check-inline">
+                              <!--  <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="decision"
                                         value="ecoutante">
                                     <label class="form-check-label">Rapport écoutante</label>
@@ -949,7 +949,15 @@
                                     <input class="form-check-input" type="radio" name="decision"
                                         value="avocat">
                                     <label class="form-check-label">Rapport avocat</label>
+                                </div>-->
+                                @foreach($type_rapport as $rapport)
+                                <div class="form-check form-check-inline">
+                                    
+                                    <input class="form-check-input" type="radio" name="decision" value="{{$rapport->id}}">
+                                    <label class="form-check-label">{{ $rapport->name }}</label>
+                                   
                                 </div>
+                            @endforeach
                             </div>
 
                             <div class="col-12" style="text-align: right">

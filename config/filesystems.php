@@ -64,7 +64,12 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
-
+        'pdf'=> [
+            'driver' => 'local',
+            'root' => public_path() . ('/pdf'),
+            'visibility' => 'public',
+    
+        ],
     ],
 
     /*

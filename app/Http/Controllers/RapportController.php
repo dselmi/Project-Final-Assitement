@@ -17,29 +17,45 @@ class RapportController extends Controller
 
     public function list_rapports_ecoutantes()
     {
-        $rapports = Rapport::where('rapport_type', 'ecoutante')->get();
-        $fiches_accueil = Fiche::where('type', 'acceuil')->get();
-        return view('Rapport_ecoutante.index', compact('rapports', 'fiches_accueil'));
+        $rapports= DB::table('rapports')
+        ->leftjoin('types', 'types.id', 'rapports.rapport_id')
+        ->select('rapports.*', 'types.name as type_rapport')
+        ->where('rapport_id', 1)
+        ->get();
+         $fiches_accueil = Fiche::where('type', 'acceuil')->get();
+         return view('Rapport_ecoutante.index', compact('rapports', 'fiches_accueil'));
     }
 
     public function list_rapports_psychologues()
     {
-        $rapports = Rapport::where('rapport_type', 'psychologue')->get();
+        $rapports= DB::table('rapports')
+       ->leftjoin('typa_rapports', 'typa_rapports.id', 'rapports.rapport_id')
+       ->select('rapports.*', 'typa_rapports.name as type_rapport')
+       ->where('rapport_id', 3)
+       ->get();
         $fiches_accueil = Fiche::where('type', 'acceuil')->get();
-        return view('Rapport_psychologue.index', compact('rapports', 'fiches_accueil'));
+        return view('Rapport_ecoutante.index', compact('rapports', 'fiches_accueil'));
     }
 
     public function list_rapports_assistantes()
     {
-        $rapports = Rapport::where('rapport_type', 'assistante')->get();
+        $rapports= DB::table('rapports')
+       ->leftjoin('typa_rapports', 'typa_rapports.id', 'rapports.rapport_id')
+       ->select('rapports.*', 'typa_rapports.name as type_rapport')
+       ->where('rapport_id', 2)
+       ->get();
         $fiches_accueil = Fiche::where('type', 'acceuil')->get();
-        return view('Rapport_assistante.index', compact('rapports', 'fiches_accueil'));
+        return view('Rapport_ecoutante.index', compact('rapports', 'fiches_accueil'));
     }
     public function list_rapports_avocat()
     {
-        $rapports = Rapport::where('rapport_type', 'avocat')->get();
-        $fiches_accueil = Fiche::where('type', 'acceuil')->get();
-        return view('Rapport_avocat.index', compact('rapports', 'fiches_accueil'));
+        $rapports= DB::table('rapports')
+        ->leftjoin('typa_rapports', 'typa_rapports.id', 'rapports.rapport_id')
+        ->select('rapports.*', 'typa_rapports.name as type_rapport')
+        ->where('rapport_id', 4)
+        ->get();
+         $fiches_accueil = Fiche::where('type', 'acceuil')->get();
+         return view('Rapport_ecoutante.index', compact('rapports', 'fiches_accueil'));
     }
 
     public function create_rapport_ecoutante(Fiche $fiche)

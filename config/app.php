@@ -230,7 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Flasher' => Flasher\Laravel\Facade\Flasher::class,
-        'PDF' =>Barryvdh\DomPDF\Facade::class,
+        "PDF" => Barryvdh\DomPDF\Facade::class
     ],
 
 ];

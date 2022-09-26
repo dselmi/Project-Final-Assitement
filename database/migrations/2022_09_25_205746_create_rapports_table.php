@@ -14,6 +14,7 @@ class CreateRapportsTable extends Migration
     public function up()
     {
         Schema::create('rapports', function (Blueprint $table) {
+
             $table->id();
             $table->foreignId('fiche_id')->constrained();
             $table->enum('rapport_type',['ecoutante','assistante','psychologue','avocat']);
@@ -21,9 +22,14 @@ class CreateRapportsTable extends Migration
             $table->date('date')->nullable();
             $table->string('place')->nullable();
             $table->longText('rapport')->nullable();
+            $table->foreignId('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->timestamps();
+
+            
+
         });
     }
+
     /**
      * Reverse the migrations.
      *

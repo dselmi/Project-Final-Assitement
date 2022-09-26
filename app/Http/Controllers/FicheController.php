@@ -12,9 +12,11 @@ use App\Models\RenderVous;
 use App\Models\Renseignement;
 use App\Models\Victime;
 use App\Models\Violence;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Type;
+use PDF;
+use Illuminate\Support\Facades\Storage;
 
 class FicheController extends Controller
 {
@@ -54,10 +56,11 @@ class FicheController extends Controller
     }
     public function create_ecoute(Fiche $fiche)
     {
+        $type_rapport = Type::all();
         if ($fiche->ecoute()->first()) {
             return back()->with('error', 'Cette fiche acceuil a deja une fiche ecoute');
         }
-        return view('FicheEcoute.create', compact('fiche'));
+        return view('FicheEcoute.create', compact('fiche','type_rapport'));
     }
     public function create_garde(Fiche $fiche)
     {
@@ -285,16 +288,24 @@ class FicheController extends Controller
 
     public function pdf(StoreNewSheetRequest $request)
     {
-        $fiches = Fiche::all();
-        $pdf = PDF::loadView('FicheAccueil.create', array('fiches' => $fiches));
-        return $pdf->stream();
+        $fiches = Fiche::where('id', $request->id)->get();
+        //dd($fiches);
+        
+        /* $pdf = PDF::loadView('myPDF', $fiches);
+         return $pdf->download('test.pdf');*/
+         $pdf = PDF::loadView('myPDF', compact('fiches'));
+         //->setOptions(['defaultFont' => 'sans-serif', 'chroot'  => public_path('/images')]);
+        // $pdf->setPaper('A4', 'landscape');
+         $filename = 'fiche'.time().'.pdf';
+         Storage::disk('pdf')->put($filename , $pdf->output());
+         return $pdf->download($filename);
 
     }
     public function stat(Request $request)
     {
         //'psychologique','harcelement','verbale','economique','physique','sexuelle'
-
-        $stats = collect(DB::select('SELECT (
+        $data = [];
+       /* $stats = collect(DB::select('SELECT (
                                         SELECT COUNT(*) FROM `violences` WHERE `violence_type` = "psychologique"
                                     ) as violence_psychologique,
                                     (
@@ -312,9 +323,30 @@ class FicheController extends Controller
                                     (
                                         SELECT COUNT(*) FROM `violences` WHERE `violence_type` = "sexuelle"
                                     ) as violence_sexuelle
-                                    '))[0];
+                                    '))[0];*/
+       $array = [];
+           // dd($array[$i]);
+        $record = Violence::select(\DB::raw("COUNT(*) as count"), \DB::raw("violence_type as name"))
+                             
+        ->groupBy('name')
+                                    ->get();
 
-        return view('stat',compact('stats'));
+              // dd($record);                     
+        
+
+         
+         foreach($record as $row) {
+            //dd($row);
+            $array['label'][] = $row->name;
+            $array['data'][] = (int) $row->count;
+          }
+     
+        $array['chart_data'] = json_encode($array);
+        // dd($array['chart_data']);                        
+        //dd($stats->violence_psychologique);
+          //  $data = $stats;
+//dd
+        return view('stat',$array);
     }
 
     public function rdv(){

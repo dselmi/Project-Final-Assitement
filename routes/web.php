@@ -76,7 +76,7 @@ Route::group(['prefix' => 'sheet', 'as' => 'sheet.'], function () {
         Route::post('/{fiche}', [FicheController::class, 'UpdateFicheAccueil'])->name('update');
     });
 
-    Route::get('/', [FicheController::class, 'pdf'])->name('pdf');
+    Route::get('/{id}', [FicheController::class, 'pdf'])->name('pdf');
     Route::delete('/delete/{fiche}', [FicheController::class, 'delete'])->name('delete');
     Route::get('/', [FicheController::class, 'rdv'])->name('rdv');
 
